@@ -1,0 +1,27 @@
+[Unit]
+Description=DanshinNoticeApi
+After=network.target
+
+[Service]
+Type=simple
+SyslogIdentifier=danshin_notice_api
+User=root
+Group=root
+WorkingDirectory=/var/www/app/danshin_notice/api
+PIDFile=/var/www/app/danshin_notice/api/app.pid
+
+ExecStart=/usr/bin/java -jar /var/www/app/danshin_notice/api/app.jar
+
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+
+Restart=always
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=3
+
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

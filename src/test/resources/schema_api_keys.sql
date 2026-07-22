@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS `api_keys`;
+
+CREATE TABLE api_keys (
+	id int not null primary key AUTO_INCREMENT,
+	key_hash VARCHAR(255) NOT NULL UNIQUE,
+	name VARCHAR(255) NOT NULL UNIQUE,
+	role VARCHAR(50) NOT NULL DEFAULT 'USER'
+);
